@@ -18,6 +18,7 @@ int main(int argc, char **argv) {
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
 
+  add_polygon(edges, 0, 10, 0, 5, 0, 0, 0, 0, 0);
   /* print_matrix( make_bezier() ); */
   /* printf("\n"); */
   /* print_matrix( make_hermite() ); */

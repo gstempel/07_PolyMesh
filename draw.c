@@ -27,6 +27,24 @@ void add_polygon( struct matrix *polygons,
 		  double x0, double y0, double z0, 
 		  double x1, double y1, double z1, 
 		  double x2, double y2, double z2 ) {
+  int i = polygons->lastcol;
+  printf("Last col: %d\nNumber of Cols: %d\n", i, polygons->cols);
+  if(i + 2 > polygons->cols) {
+    grow_matrix(polygons, polygons->cols*2);
+  }
+  polygons->m[0][i] = x0;
+  polygons->m[1][i] = y0;
+  polygons->m[2][i] = z0;
+  polygons->m[0][i+1] = x1;
+  polygons->m[1][i+1] = y1;
+  polygons->m[2][i+1] = z1;
+  polygons->m[0][i+2] = x2;
+  polygons->m[1][i+2] = y2;
+  polygons->m[2][i+2] = z2;
+
+  polygons->lastcol = i+3;
+  printf("Last col: %d\nNumber of Cols: %d\n", polygons->lastcol, polygons->cols);
+  print_matrix(polygons);
 }
 
 /*======== void draw_polygons() ==========
