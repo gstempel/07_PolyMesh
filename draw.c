@@ -35,12 +35,15 @@ void add_polygon( struct matrix *polygons,
   polygons->m[0][i] = x0;
   polygons->m[1][i] = y0;
   polygons->m[2][i] = z0;
+  polygons->m[3][i] = 0.0;
   polygons->m[0][i+1] = x1;
   polygons->m[1][i+1] = y1;
   polygons->m[2][i+1] = z1;
+  polygons->m[3][i+1] = 0.0;
   polygons->m[0][i+2] = x2;
   polygons->m[1][i+2] = y2;
   polygons->m[2][i+2] = z2;
+  polygons->m[3][i+2] = 0.0;
 
   polygons->lastcol = i+3;
   printf("Last col: %d\nNumber of Cols: %d\n", polygons->lastcol, polygons->cols);
@@ -57,6 +60,14 @@ lines connecting each points to create bounding
 triangles
 ====================*/
 void draw_polygons( struct matrix *polygons, screen s, color c ) {
+  int i;
+  printf("last col: %d\n", polygons->lastcol);
+  for(i = 0; i < polygons->lastcol; i+=3) {    
+    draw_line(polygons->m[0][i], polygons->m[1][i], polygons->m[0][i+1], polygons->m[1][i+1], s, c);
+    draw_line(polygons->m[0][i], polygons->m[1][i], polygons->m[0][i+2], polygons->m[1][i+2], s, c);
+    draw_line(polygons->m[0][i+1], polygons->m[1][i+1], polygons->m[0][i+2], polygons->m[1][i+2], s, c);
+    printf("HERE\n");
+  }
 }
 
 
