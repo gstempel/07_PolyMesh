@@ -137,24 +137,31 @@ void add_sphere( struct matrix * edges,
 
   struct matrix *points = generate_sphere(cx, cy, cz, r, step);
   int num_steps = (int)(1/step +0.1);
+  printf("Num steps: %d\n", num_steps);
   int index, lat, longt;
   int latStop, longStop, latStart, longStart;
   latStart = 0;
   latStop = num_steps;
   longStart = 0;
-  longStop = num_steps;
+  longStop = 1;//num_steps;
 
   num_steps++;
   for ( lat = latStart; lat < latStop; lat++ ) {
     for ( longt = longStart; longt <= longStop; longt++ ) {
 
       index = lat * (num_steps) + longt;
+      add_polygon( edges,
+		   points->m[0][index],points->m[1][index], points->m[2][index],
+		   points->m[0][index+1], points->m[1][index+1], points->m[2][index+1],
+		   points->m[0][index+num_steps], points->m[1][index+num_steps], points->m[2][index+num_steps]);
+      /*
       add_edge( edges, points->m[0][index],
 		points->m[1][index],
 		points->m[2][index],
 		points->m[0][index] + 1,
 		points->m[1][index] + 1,
 		points->m[2][index] + 1);
+      */
     }
   }  
   free_matrix(points);
