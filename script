@@ -1,13 +1,14 @@
 #test box mesh
 box
 250 250 0 200 100 400
+display
 ident
 rotate
 x 20
 rotate
 y 20
-move
-150 200 0
+#move
+#150 200 0
 apply
 display
 #clear the edge matrix, test the sphere
